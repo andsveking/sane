@@ -2,3 +2,19 @@ mouse_trigger {
   input: MOUSE_BUTTON_1
   action: "touch"
 }
+mouse_trigger {
+  input: MOUSE_BUTTON_1
+  action: "mouse-button-1"
+}
+mouse_trigger {
+  input: MOUSE_BUTTON_2
+  action: "mouse-button-2"
+}
+mouse_trigger {
+  input: MOUSE_WHEEL_UP
+  action: "mouse-wheel-up"
+}
+mouse_trigger {
+  input: MOUSE_WHEEL_DOWN
+  action: "mouse-wheel-down"
+}

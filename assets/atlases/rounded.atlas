@@ -1,0 +1,21 @@
+images {
+  image: "/assets/images/rounded_4px.png"
+}
+images {
+  image: "/assets/images/rounded_4px_border_1px.png"
+}
+images {
+  image: "/assets/images/rounded_4px_border_2px.png"
+}
+images {
+  image: "/assets/images/rounded_6px.png"
+}
+images {
+  image: "/assets/images/rounded_6px_border_1px.png"
+}
+images {
+  image: "/assets/images/rounded_6px_border_2px.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0
