@@ -16,6 +16,15 @@ images {
 images {
   image: "/assets/images/rounded_6px_border_2px.png"
 }
+images {
+  image: "/assets/images/rounded_pixelperfect_inner.png"
+}
+images {
+  image: "/assets/images/rounded_pixelperfect_outer.png"
+}
+images {
+  image: "/assets/images/rounded_pixelperfect_inner_2px.png"
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0
