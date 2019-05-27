@@ -41,8 +41,8 @@ local default_button_states = {}
 local default_theme_funcs = {
     on_init = function(node_name, key)
         if not default_button_states[key] then
-            local node_base = gui.get_node(node_name .. "_base")
-            local node_inner = gui.get_node(node_name .. "_inner")
+            local node_base = gui.get_node(node_name .. "/button_base")
+            local node_inner = gui.get_node(node_name .. "/button_inner")
             default_button_states[key] = {
                 node_base = node_base,
                 node_inner = node_inner,
@@ -95,7 +95,7 @@ function sane.themed_button(self, node_name, action_id, action, click_func, them
     local key = tostring(self) .. node_name
     theme_funcs.on_init(node_name, key)
     
-    local node_base = gui.get_node(node_name .. "_base")
+    local node_base = gui.get_node(node_name .. "/button_base")
     local hit = gui.pick_node(node_base, action.x, action.y)
     if hit then
         theme_funcs.on_hover(node_name, key)

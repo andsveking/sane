@@ -3,7 +3,7 @@ function init(self)
 end
 
 function on_input(self, action_id, action)
-	sane.themed_button(self, "button", action_id, action, function()
+	sane.themed_button(self, "debug_button", action_id, action, function()
 		print("clicked button")
 	end)
 end
