@@ -7,6 +7,28 @@ function init(self)
 
     self.clear_color = vmath.vector4(0, 0, 0, 0)
     self.view = vmath.matrix4()
+
+    local rt_params = {
+        [render.BUFFER_COLOR_BIT] = {
+            format = render.FORMAT_RGBA,
+            width = render.get_window_width(),
+            height = render.get_window_height(),
+            u_wrap = render.WRAP_REPEAT,
+            v_wrap = render.WRAP_REPEAT,
+            min_filter = render.FILTER_LINEAR,
+            mag_filter = render.FILTER_LINEAR
+        },
+        [render.BUFFER_DEPTH_BIT] = {
+            format = render.FORMAT_DEPTH,
+            width = render.get_window_width(),
+            height = render.get_window_height(),
+            u_wrap = render.WRAP_REPEAT,
+            v_wrap = render.WRAP_REPEAT,
+            min_filter = render.FILTER_LINEAR,
+            mag_filter = render.FILTER_LINEAR
+        }
+    }
+    self.rt = render.render_target("rt", rt_params)
 end
 
 function draw_to_rt(self, dt, rt, draw_func)
@@ -15,11 +37,13 @@ function draw_to_rt(self, dt, rt, draw_func)
     render.set_render_target(nil)
 end
 
-function draw_rt(self, rt, material)
+function draw_fp_pass(self, rt, material)
     render.enable_texture(0, rt, render.BUFFER_COLOR_BIT)
     if material then
         render.enable_material(material)
     end
+    render.set_view(vmath.matrix4())
+    render.set_projection(vmath.matrix4_orthographic(-0.5, 0.5, -0.5, 0.5, -1, 1))
     render.draw(self.fs_pred)
     if material then
         render.disable_material()
@@ -27,12 +51,12 @@ function draw_rt(self, rt, material)
     render.disable_texture(0)
 end
 
-function update(self, dt)
+function draw_scene(self, dt)
     render.set_depth_mask(true)
     render.set_stencil_mask(0xff)
     render.clear({[render.BUFFER_COLOR_BIT] = self.clear_color, [render.BUFFER_DEPTH_BIT] = 1, [render.BUFFER_STENCIL_BIT] = 0})
-
     render.set_viewport(0, 0, render.get_window_width(), render.get_window_height())
+    
     render.set_view(self.view)
 
     render.set_depth_mask(false)
@@ -47,6 +71,16 @@ function update(self, dt)
     render.draw(self.tile_pred)
     render.draw(self.particle_pred)
     render.draw_debug3d()
+end
+
+function update(self, dt)
+    render.set_depth_mask(true)
+    render.set_stencil_mask(0xff)
+    render.clear({[render.BUFFER_COLOR_BIT] = self.clear_color, [render.BUFFER_DEPTH_BIT] = 1, [render.BUFFER_STENCIL_BIT] = 0})
+    render.set_viewport(0, 0, render.get_window_width(), render.get_window_height())
+
+    draw_to_rt(self, dt, self.rt, draw_scene)
+    draw_fp_pass(self, self.rt)
 
     -- render GUI
     --
