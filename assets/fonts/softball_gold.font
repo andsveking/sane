@@ -1,5 +1,5 @@
 font: "/assets/fonts/softball_gold/SoftballGold.ttf"
-material: "/assets/materials/proggy_clean.material"
+material: "/assets/materials/sane/proggy_clean.material"
 size: 16
 antialias: 1
 alpha: 1.0

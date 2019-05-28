@@ -1,0 +1,30 @@
+images {
+  image: "/assets/images/sane/rounded_4px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_4px_border_1px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_4px_border_2px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_6px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_6px_border_1px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_6px_border_2px.png"
+}
+images {
+  image: "/assets/images/sane/rounded_pixelperfect_inner.png"
+}
+images {
+  image: "/assets/images/sane/rounded_pixelperfect_outer.png"
+}
+images {
+  image: "/assets/images/sane/rounded_pixelperfect_inner_2px.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0
